@@ -1,0 +1,9 @@
+path: dataset
+train: train
+validation: val
+test: test
+
+class_num: 5
+class_list: ['PassengerVehicle', 'Truck', 'Crane', 'Bike', 'Others']
+
+auto_download:

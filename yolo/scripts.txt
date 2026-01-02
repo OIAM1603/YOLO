@@ -1,0 +1,1 @@
+python yolo/lazy.py task=train task.epoch=2 name=VietLao_cpu model=v9-m dataset=vehicles image_size=[640,640] weight=True use_wandb=True

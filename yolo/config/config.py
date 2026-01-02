@@ -159,6 +159,7 @@ class Config:
     use_tensorboard: bool
 
     weight: Optional[str]
+    ckpt_path: Optional[str] = None  # Path to checkpoint for resuming training
 
 
 @dataclass
