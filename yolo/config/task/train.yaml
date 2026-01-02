@@ -53,3 +53,10 @@ scheduler:
 ema:
   enable: true
   decay: 0.9999
+
+early_stopping:
+  enable: false  # Set to true to enable early stopping
+  patience: 20   # Stop if no improvement for 20 epochs
+  monitor: map   # Monitor mAP metric
+  mode: max      # Higher mAP is better
+  min_delta: 0.001  # Minimum improvement threshold

@@ -21,7 +21,7 @@ import numpy as np
 import torch
 import wandb
 from lightning import LightningModule, Trainer, seed_everything
-from lightning.pytorch.callbacks import Callback, RichModelSummary, RichProgressBar
+from lightning.pytorch.callbacks import Callback, EarlyStopping, RichModelSummary, RichProgressBar
 from lightning.pytorch.callbacks.progress.rich_progress import CustomProgress
 from lightning.pytorch.loggers import TensorBoardLogger, WandbLogger
 from lightning.pytorch.utilities import rank_zero_only
@@ -277,6 +277,19 @@ def setup(cfg: Config):
 
     if hasattr(cfg.task, "ema") and cfg.task.ema.enable:
         progress.append(EMA(cfg.task.ema.decay))
+
+    # Add Early Stopping callback if enabled
+    if hasattr(cfg.task, "early_stopping") and cfg.task.early_stopping and cfg.task.early_stopping.enable:
+        es_cfg = cfg.task.early_stopping
+        progress.append(
+            EarlyStopping(
+                monitor=es_cfg.monitor,
+                patience=es_cfg.patience,
+                mode=es_cfg.mode,
+                min_delta=es_cfg.min_delta,
+                verbose=True,
+            )
+        )
     if quiet:
         logger.setLevel(logging.ERROR)
         return progress, loggers, save_path

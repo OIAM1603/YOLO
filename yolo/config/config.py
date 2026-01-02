@@ -104,6 +104,15 @@ class EMAConfig:
 
 
 @dataclass
+class EarlyStoppingConfig:
+    enable: bool
+    patience: int  # Number of epochs with no improvement after which training will be stopped
+    monitor: str  # Metric to monitor, e.g., "map", "map_50"
+    mode: str  # "max" for metrics like mAP (higher is better), "min" for loss
+    min_delta: float  # Minimum change to qualify as an improvement
+
+
+@dataclass
 class NMSConfig:
     min_confidence: float
     min_iou: float
@@ -136,6 +145,7 @@ class TrainConfig:
     scheduler: SchedulerConfig
     ema: EMAConfig
     validation: ValidationConfig
+    early_stopping: Optional[EarlyStoppingConfig] = None
 
 
 @dataclass
