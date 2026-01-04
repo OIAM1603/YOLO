@@ -1,4 +1,4 @@
-path: /kaggle/input/vehicles-vl-augmented/dataset
+path: dataset
 train: images/train
 validation: images/val
 test: images/test
