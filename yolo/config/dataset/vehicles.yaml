@@ -1,7 +1,7 @@
 path: dataset
-train: train
-validation: val
-test: test
+train: images/train
+validation: images/val
+test: images/test
 
 class_num: 5
 class_list: ['PassengerVehicle', 'Truck', 'Crane', 'Bike', 'Others']
